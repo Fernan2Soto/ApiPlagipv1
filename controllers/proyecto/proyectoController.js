@@ -1012,6 +1012,9 @@ const updatefinalizartarea = async (req,res)=>{
 
 
 
+
+
+
 module.exports={
     getciclos,
     gettipoproyecto,

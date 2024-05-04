@@ -1,14 +1,20 @@
 const bodyParser = require("body-parser");
 const express = require("express");
+const session = require('express-session');
 const moment = require('moment')
 const dotenv = require('dotenv');
 dotenv.config({path:'./env/.env'});
  
 const connection = require('./db/db');
+const expressLayouts = require('express-ejs-layouts')
+
+
 
 const app = express();
 const PORT = 3000;
-
+app.set('view engine', 'ejs');
+app.set('views',__dirname + '/views');
+app.use(expressLayouts);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -47,7 +53,7 @@ const sesionRouter = require('./routers/loginRouters')
 
 
 app.use('/api',proyectoRouter)
-app.use('/sesion',sesionRouter)
+app.use('/login',sesionRouter)
 
 app.listen(PORT,()=>{ 
     console.log('http://localhost:'+PORT);
