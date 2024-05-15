@@ -1,6 +1,7 @@
 const connection = require("../../db/db");
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
+const { request } = require("express");
 
 //CRUD Login
 //Busqueda de Usuario 
@@ -33,19 +34,24 @@ const setloginusuario = async (req,res)=>{
                         }else{
                             const data_proyectista = Object.values(JSON.parse(JSON.stringify(result))); 
                             const data_user ={
-                                user_id : data_proyectista[0].id,
+                                user_id : data_proyectista[0].id_usuario,
+                                id_proyectista: data_proyectista[0].id_proyectista,
+                                tipo_usuario: data_proyectista[0].nombre_tipo,
+                                nivel_acceso: data_proyectista[0].nivel_acceso,
                                 username : data_proyectista[0].name,
                             }
+                            
+                            req.session.loggedin=true;
+                            req.session.user= data_user;
+                            console.log(req.session.user);
+
                             const data_token = jwt.sign(data_user, process.env.TOKEN,{
-                                expiresIn : 60 * 30
+                                expiresIn : 60 * 30 
                             })
-                            console.log(data_token)
+                           // console.log(data_token)
                             if (data_proyectista.length != 0 ) {
-                                res.status(200).json({
-                                    login : "ok" ,
-                                    user : Object.values(JSON.parse(JSON.stringify(result))),
-                                    token : data_token
-                                });
+                              res.redirect('/plagip')
+
                                 return;  
                             }
                             res.status(200).json({
@@ -59,10 +65,9 @@ const setloginusuario = async (req,res)=>{
                         
                     });
                 } else {
-                    res.status(401).json({
-                        login : "no" ,
-                        mensaje : "Clave Incorrecta"
-                    });
+                  
+                    res.redirect('back')
+
                     return;
                 }
             } else {

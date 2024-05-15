@@ -18,6 +18,14 @@ app.use(expressLayouts);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
+app.use(session({
+    secret: 'plagip',
+    resave: true,
+    saveUninitialized: true,
+    
+  }))
+  
 // app.use((req, res, next)=>{
 //     const token = req.headers.token
 //     console.log({
@@ -49,11 +57,13 @@ app.use(bodyParser.json());
 
 const proyectoRouter = require('./routers/proyectoRouters')
 const sesionRouter = require('./routers/loginRouters')
-
+const plagip = require('./routers/plagipRouters')
 
 
 app.use('/api',proyectoRouter)
 app.use('/login',sesionRouter)
+app.use('/plagip',plagip)
+
 
 app.listen(PORT,()=>{ 
     console.log('http://localhost:'+PORT);
