@@ -26,114 +26,27 @@
                     <tr>
                         
                         <th>Id</th>
-                        <th>Jefe Proyecto</th>
+                        <th>Encargado</th>
                         <th>Tipo </th>
-                        <th>Nombre </th>
+                        <th>Nombre Proyecto </th>
                         <th>Fecha Creacion</th>
                         <th>Descripcion </th>
-                        <th>Acciones </th>
+                        
                     </tr>
                 </thead>
+                
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Manuel Ojeda</td>
-                        <td>Comunitario</td>
-                        <td>Plaza Villa Francia</td>
-                        <td>12-12-12</td>
-                        <td>fsdfsadfasdfa</td>
-                        <td>fsdfsadfasdfa</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Manuel Ojeda</td>
-                        <td>Comunitario</td>
-                        <td>Plaza Villa Francia</td>
-                        <td>12-12-12</td>
-                        <td>fsdfsadfasdfa</td>
-                        <td>fsdfsadfasdfa</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Manuel Ojeda</td>
-                        <td>Comunitario</td>
-                        <td>Plaza Villa Francia</td>
-                        <td>12-12-12</td>
-                        <td>fsdfsadfasdfa</td>
-                        <td>fsdfsadfasdfa</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Manuel Ojeda</td>
-                        <td>Comunitario</td>
-                        <td>Plaza Villa Francia</td>
-                        <td>12-12-12</td>
-                        <td>fsdfsadfasdfa</td>
-                        <td>fsdfsadfasdfa</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Andres Ojeda</td>
-                        <td>Comunitario</td>
-                        <td>Plaza Villa Francia</td>
-                        <td>12-12-12</td>
-                        <td>fsdfsadfasdfa</td>
-                        <td>fsdfsadfasdfa</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Sebastian Ojeda</td>
-                        <td>Comunitario</td>
-                        <td>Plaza Villa Francia</td>
-                        <td>12-12-12</td>
-                        <td>fsdfsadfasdfa</td>
-                        <td>fsdfsadfasdfa</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Fernando Ojeda</td>
-                        <td>Comunitario</td>
-                        <td>Plaza Villa Francia</td>
-                        <td>12-12-12</td>
-                        <td>fsdfsadfasdfa</td>
-                        <td>fsdfsadfasdfa</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Matias Ojeda</td>
-                        <td>Comunitario</td>
-                        <td>Plaza Villa Francia</td>
-                        <td>12-12-12</td>
-                        <td>fsdfsadfasdfa</td>
-                        <td>fsdfsadfasdfa</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Yenifer Ojeda</td>
-                        <td>Comunitario</td>
-                        <td>Plaza Villa Francia</td>
-                        <td>12-12-12</td>
-                        <td>fsdfsadfasdfa</td>
-                        <td>fsdfsadfasdfa</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Marlen Ojeda</td>
-                        <td>Comunitario</td>
-                        <td>Plaza Villa Francia</td>
-                        <td>12-12-12</td>
-                        <td>fsdfsadfasdfa</td>
-                        <td>fsdfsadfasdfa</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>jose Ojeda</td>
-                        <td>Comunitario</td>
-                        <td>Plaza Villa Francia</td>
-                        <td>12-12-12</td>
-                        <td>fsdfsadfasdfa</td>
-                        <td>fsdfsadfasdfa</td>
-                    </tr>
+                    <% tablaProyectos.forEach(element => { %>
+                        <tr>
+                            <td><%=element.id_proyecto %></td>
+                            <td><%=element.tipo_proyecto %></td>
+                            <td><%=element.encargado_proyecto %></td>
+                            <td><%=element.nombre_proyecto %></td>
+                            <td><%=element.fecha_creacion %></td>
+                            <td><%=element.descripcion %></td>                            
+                        </tr>                   
+                    <% }) %>            
+                                    
         
                 </tbody>
             </table>
@@ -157,24 +70,31 @@
             </div>
             <div class="modal-body">
                 <div class="col-md-12">
-                    <form action="/proyecto.js" class="RegistroProyecto" autocomplete="off" method="post">
+                    <form action="/plagip/proyectos" class="RegistroProyecto" autocomplete="off" method="post">
                         <div class="form-row">  
                             <div class="form-gorup col-md-4">
-                                <label for="">Codigo Proyecto</label>
-                                <input type="text" placeholder="" class="form-control txttipoProyecto"
-                                name="id_tipoproyecto"  id="id_tipoproyecto">
+                                <label for="">Proyecto</label>
+                                <select name="id_tipoproyecto" class="form-select" id="id_tipoproyecto">
+                                <% tipoProyecto.forEach(element => { %>
+                                 <option value="<%= element.id %>"><%= element.nombre %></option>
+                                <% }) %>
+                                   
+                                </select>
                             </div>
                             <div class="form-group col-md-8 ">
-                                <label for="">Codig Jefe Proyecto:</label>
-                                <input type="text" placeholder="" class="form-control txt_jefeProyecto"
-                                    name="id_jefeproyecto" id="id_jefeproyecto" required>
+                                <label for="">Jefe Proyecto:</label>
+                                <select name="id_jefeproyecto" class="form-select" id="id_jefeproyecto">
+                                    <% encargados.forEach(element => { %>
+                                     <option value="<%= element.idproyectista %>"><%= element.nombreproyectista %> %></option>
+                                    <% }) %>
+                                       
+                                    </select>
                             </div>
                             <div class="form-group col-md-4 mt-2">
                                 <label for="">Tipo Proyecto</label>                                
-                                <select name="tipo_idea" class="form-control" id="tipo_idea">
-                                    <option value="">Seleccione tipo</option>
-                                    <option value="hab001">Pladeco</option>
-                                    <option value="des001">Comunal</option>
+                                <select name="tipo_idea" class="form-select" id="tipo_idea">
+                                    <option value="PLADECO">Pladeco</option>
+                                    <option value="COMUNAL">Comunal</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-8 mt-2 ">
@@ -215,23 +135,23 @@
     "targets": 0
     }],
     "order"     : ([0, 'desc']),
-    language: {
-    "sProcessing": "Procesando...",
-    "sLengthMenu": "Mostrar MENU resultados",
-    "sZeroRecords": "No se encontraron resultados",
-    "sEmptyTable": "Ningún dato disponible en esta tabla",
-    "sInfo": "Mostrando resultados START-END de  TOTAL",
-    "sInfoEmpty": "Mostrando resultados del 0 al 0 de un total de 0 registros",
-    "sInfoFiltered": "(filtrado de un total de MAX registros)",
-    "sSearch": "Buscar:",
-    "sLoadingRecords": "Cargando...",
-    "oPaginate": {
-        "sFirst": "Primero",
-        "sLast": "Último",
-        "sNext": "Siguiente",
-        "sPrevious": "Anterior"
-    },
+    
+    // "sProcessing": "Procesando...",
+    // "sLengthMenu": "Mostrar MENU resultados",
+    // "sZeroRecords": "No se encontraron resultados",
+    // "sEmptyTable": "Ningún dato disponible en esta tabla",
+    // "sInfo": "Mostrando resultados START-END de  TOTAL",
+    // "sInfoEmpty": "Mostrando resultados del 0 al 0 de un total de 0 registros",
+    // "sInfoFiltered": "(filtrado de un total de MAX registros)",
+    // "sSearch": "Buscar:",
+    // "sLoadingRecords": "Cargando...",
+    // "oPaginate": {
+    //     "sFirst": "Primero",
+    //     "sLast": "Último",
+    //     "sNext": "Siguiente",
+    //     "sPrevious": "Anterior"
+    // },
     }
-    });
-    });
+    );
+});
 </script>

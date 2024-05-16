@@ -8,6 +8,7 @@ router.get('/',plagipController.getIndex);
 router.get('/proyectos',plagipController.getIndexProyectos);
 router.get('/misProyectos',plagipController.getIndexMisProyectos);
 router.post('/proyectos',plagipController.setcrearproyecto);
+//router.get('/proyectos',plagipController.getlistarproyectos);
 
 
 
