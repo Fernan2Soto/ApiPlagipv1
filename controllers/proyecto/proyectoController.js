@@ -784,8 +784,8 @@ const updaterateproyecto = async (req,res)=>{
     } catch (error) {
         res.status(500).send(error.message);
     }
-}; 
-
+}; //seba   //tuyo
+// plaza, casa
 //CRUD SUBPROYECTOS
 //Crear Subproyecto
 const setcrearsubproyecto = async (req, res) =>{

@@ -1,3 +1,156 @@
+<!-- <h1>tabla de proyectos, asociados a los subproyectos que estan asociados a los proyectistas 
+
+</h1> -->
 
 
-<h1>tabal de proyectos, asociados a los subproyectos que estan asociados a los proyectistas</h1>
+<div class="container p-4 mt-2 table-responsive border border-1">
+    <h3 class="text-center">Mis Proyectos</h3>
+    <hr>      
+
+    <div class="container-fluid">
+        <div class="row">
+            <table class="table table-light bg-opacity-25 table-striped tabla-hover table-bordered " id="tabla"
+                style="background-color: #6ed5fd; font-size: 0.9em;">
+                <thead>
+                    <tr>
+
+                        <th>Id</th>
+                        <th>Tipo</th>
+                        <th>Encargado </th>
+                        <th>Nombre Proyecto </th>
+                        <th>Fecha Creacion</th>
+                        <th>Descripcion </th>
+                        <th>Acciones </th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% tablamisProyectos.forEach(element=> { %>
+                        <tr>
+                            <td>
+                                <%=element.id_proyecto %>
+                            </td>
+                            <td>
+                                <%=element.tipo_proyecto %>
+                            </td>
+                            <td>
+                                <%=element.encargado_proyecto %>
+                            </td>
+                            <td>
+                                <%=element.nombre_proyecto %>
+                            </td>
+                            <td>
+                                <%=element.fecha_creacion %>
+                            </td>
+                            <td>
+                                <%=element.descripcion %>
+                            </td>
+                            <td>
+                                <a href="/plagip/MisProyectos/<%=element.id_proyecto %>" class="btn btn-primary btn btn-sm text-center">Ver Detalle</a>
+                            </td>
+
+                            <!-- <td class="text-center"><button class="btn btn-primary btn btn-sm" href="vistamisproyecto.ejs">
+                                Detalle</button> -->
+                                <!-- añadir boton accion funcion : redirigir a vista donde se muestre toda la indormacion relacionada 
+                                al proyecto -->
+                            <!-- </td> -->
+                        </tr>
+                        <% }) %>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal que despliega formulario de creacion de historial -->
+
+<div class="modal fade" id="historial" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">Historial</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <form action="/plagip/misproyectos" class="Registrosubproyecto" autocomplete="off" method="post">
+                    </form>
+                    <div class="form-row">
+                        <div class="form-gorup col-md-6">
+                            <label for="">Proyecto</label>
+                            <select name="id_proyecto" class="form-select" id="id_proyecto">
+                               
+                            </select>
+                        </div>
+                        <div class="form-gorup col-md-6">
+                            <label for="">Proyectista</label>
+                            <select name="id_proyectista" class="form-select" id="id_proyectista">
+
+                            </select>
+                        </div>
+                        <div class="form-group col-md-5 ">
+                            <label for="">Titulo</label>
+                            <select name="titulo" class="form-select" id="titulo">
+
+                            </select>
+                        </div>
+                        <div class="form-group col-md-12 mt-2 ">
+                            <label for="">Descripcion</label>
+                            <input type="text" placeholder="" class="form-control txt_DescripcionProyecto"
+                                name="descripcion_historial" id="descripcion_historial" required>
+                        </div>
+                        <div class="form-group col-md-4 mt-2 ">
+                            <label for="">Fecha Registro:</label>
+                            <input type="date" class="form-control" name="fecha_registro" id="fecha_registro" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer md-2">
+                        <button type="submit" class="form-control btn btn-primary btn-sm "
+                            style=" width: 80px;">Guardar</button>
+                        <button type="submit" class="form-control btn btn-secondary btn-sm" style="width: 80px;"
+                            data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tabla').DataTable({
+                "columnDefs": [{
+                    "targets": 0
+                }],
+                "order": ([0, 'desc']),
+
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar MENU resultados",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando resultados START-END de  TOTAL",
+                "sInfoEmpty": "Mostrando resultados del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de MAX registros)",
+                "sSearch": "Buscar:",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+            }
+            );
+        });
+    </script>
