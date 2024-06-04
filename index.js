@@ -8,6 +8,8 @@ dotenv.config({path:'./env/.env'});
 const connection = require('./db/db');
 const expressLayouts = require('express-ejs-layouts')
 
+const convertirFechas = require('./middlewares/fechasMiddleware');
+
 
 
 const app = express();
@@ -18,6 +20,8 @@ app.use(expressLayouts);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Middleware para convertir fechas
+app.use(convertirFechas);
 
 app.use(session({
     secret: 'plagip',
@@ -58,6 +62,7 @@ app.use(session({
 const proyectoRouter = require('./routers/proyectoRouters')
 const sesionRouter = require('./routers/loginRouters')
 const plagip = require('./routers/plagipRouters')
+
 
 
 app.use('/api',proyectoRouter)

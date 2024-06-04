@@ -130,7 +130,7 @@ const getsubproyectos = async (req, res) => {
                                     const tipoEstados_tsp = Object.values(JSON.parse(JSON.stringify(result))); //evaluando lo que me trae la consulta
 
 
-                                    console.log(id_proyectista);
+                                    console.log(tablasubproyectos);
 
                                     res.render('./Proyectos/vistaproyecto', {
                                         usuario: req.session.user,
@@ -351,7 +351,7 @@ const postactualizarestado = async (req, res) => {
                                             return;
                                         } else {
                                             res.status(200).json({
-                                                status: "ok",
+                                                status : "ok",
                                                 mensaje: 'Estado Actualizado',
                                                 result: result
                                             });
@@ -455,10 +455,12 @@ const postactualizarrate = async (req, res) => {
                                             res.status(500).send(error.message);
                                             return;
                                         } else {
-                                            res.status(200).json({
-                                                mensaje: 'RATE Actualizado',
-                                                result: result
-                                            });
+                                           // res.status(200).json({
+                                            //     mensaje: 'Ciclo Actualizado',
+                                            //     result: result
+                                            // });
+                                            console.log('Rate actualizado con exito')
+                                            res.redirect('back')
                                             return;
                                         }
                                     });
@@ -516,11 +518,84 @@ const postcrearsubproyecto = async (req, res) => {
 }
 
 
+//Post actualizar codigo inicio
+const updatecodigoinicio = async (req, res) => {
+
+    try {
+        let proyecto = req.body;
+        console.log(proyecto)
+        connection.query(`UPDATE proyectos SET codigo_inicio = "${proyecto.codigo}" WHERE id = "${proyecto.id_proyecto}"`,(error,result)=>{
+            if (error) {
+                console.log(error)
+                res.status(500).send(error.message);
+                return;
+            }else{
+                connection.query(`INSERT INTO historial_proyectos SET id_proyecto = "${proyecto.id_proyecto}",id_proyectista = "${proyecto.id_proyectista}",titulo = "Agrega codigo de inicio", descripcion_historial = "Codigo ${proyecto.codigo}", fecha_registro = "${moment().format()}"`,(error,result)=>{
+                    if (error) {
+                        console.log(error)
+                        res.status(500).send(error.message);
+                        return;
+                    }else{
+                        
+                         // res.status(200).json({
+                        //     mensaje: 'Subproyecto Creado con Exito',
+                        //     result: result
+                        // });
+                        // return;
+                        console.log('codigo de inicio creado con exito')
+                        res.redirect('back')
+                        return;
+                    }
+                });
+            }
+        });
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+
+}
+
+//Post actualizar codigo inicio
+
+const updatecodigofin = async (req, res) => {
+
+    try {
+        let proyecto = req.body;
+        //console.log(proyecto)
+        connection.query(`UPDATE proyectos SET codigo_fin = "${proyecto.codigo}" WHERE id = "${proyecto.id_proyecto}"`,(error,result)=>{
+            if (error) {
+                console.log(error)
+                res.status(500).send(error.message);
+                return;
+            }else{
+                connection.query(`INSERT INTO historial_proyectos SET id_proyecto = "${proyecto.id_proyecto}",id_proyectista = "${proyecto.id_proyectista}",titulo = "Agrega codigo de Final", descripcion_historial = "Codigo ${proyecto.codigo}", fecha_registro = "${moment().format()}"`,(error,result)=>{
+                    if (error) {
+                        console.log(error)
+                        res.status(500).send(error.message);
+                        return;
+                    }else{
+                           // res.status(200).json({
+                        //     mensaje: 'Subproyecto Creado con Exito',
+                        //     result: result
+                        // });
+                        // return;
+                        console.log('codigo de fin creado con exito')
+                        res.redirect('back')
+                        return;
+                    }
+                });
+            }
+        });
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+
+}
 //Acceso a la vista del detalle de subproyectos y tareas asociadas
 const getlistarsubproyectostareas = async (req, res) => {
 
     const id_subproyecto = req.params.id_subproyecto
-    const id_proyectista = req.params.id_proyectista
+    
 
     res.render('./Proyectos/tareas', {
         usuario: req.session.user,
@@ -541,7 +616,9 @@ module.exports = {
     postactualizarestado,
     postcrearsubproyecto,
     postactualizarrate,
-    getlistarsubproyectostareas
+    getlistarsubproyectostareas,
+    updatecodigoinicio,
+    updatecodigofin
 
 };
 

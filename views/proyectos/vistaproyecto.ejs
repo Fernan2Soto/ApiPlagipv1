@@ -65,19 +65,24 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-2">
-                    <p>Codigo Inicio:</p>
+                    <p>Codigo Inicio</p>                    
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="" name="codig_inicio" id="codig_inicio">
+                <div class="form-group col-md-2">
+                    <label for="" name="codigo_inicio" id="codigo_inicio">
                         <% nombreProyecto.forEach(element=> { %>
-                            <%=element.codigo_inicio %>
-                                <% }) %>
-                    </label>
+                        <%=element.codigo_inicio %>
+                            <% }) %></label>
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="button" class="btn btn-primary text-center btn btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#modalcodigoinicio">Editar</button>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="">Ciclo: </label>
-                    <label for="" name="ciclosProyecto">xxxxxxx</label>
-
+                    <label for="" name="ciclosProyecto">
+                        <% nombreProyecto.forEach(element=> { %>
+                        <%=element.nombre_ciclo %>
+                            <% }) %></label>
                 </div>
                 <div class="form-group  col-md-3">
                     <button type="button" class="btn btn-primary text-center btn btn-sm" data-bs-toggle="modal"
@@ -88,16 +93,20 @@
                 <div class="form-group col-md-2">
                     <p>Codigo Fin:</p>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="" name="cdigo_fin" id="cdigo_fin">
-                        <% nombreProyecto.forEach(element=> { %>
-                            <%=element.codigo_fin %>
-                                <% }) %>
-                    </label>
+                <div class="form-group col-md-2">
+                    <label for="" name="" id=""></label>
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="button" class="btn btn-primary text-center btn btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#modalcodigofin">Editar</button>
                 </div>
                 <div class="form-group col-md-2 ">
                     <label for="">Estado: </label>
-                    <label for="" name="estadoProyecto">xxxxxxx</label>
+                    <label for="" name="estadoProyecto">
+                        <% nombreProyecto.forEach(element=> { %>
+                            <%=element.nombre_estado %>
+                                <% }) %>
+                    </label>
 
                 </div>
                 <div class="form-group  col-md-3">
@@ -114,7 +123,11 @@
                 </div>
                 <div class="form-group col-md-2">
                     <label for="">Rate: </label>
-                    <label for="" name="rateProyecto">xxxxxxx</label>
+                    <label for="" name="rateProyecto">
+                        <% nombreProyecto.forEach(element=> { %>
+                            <%=element.nombre_rate %>
+                                <% }) %>
+                    </label>
 
                 </div>
                 <div class="col-md-3">
@@ -152,7 +165,8 @@
                             <th>Proyectista </th>
                             <th>Nombre subproyecto </th>
                             <th>Fecha Creacion</th>
-                            <th>Estado </th>
+                            <th>Estado actual</th>
+                            <th>Dias Transcurridos</th>
                             <th>Acciones </th>
                         </tr>
                     </thead>
@@ -171,10 +185,13 @@
                                 </td>
 
                                 <td>
-                                    <%=element.id_subproyecto %>
+                                    <%=element.nombre_estado %>
+                                </td>
+                                <td>
+                                    <%=element.nombre_estado %>
                                 </td>
                                 <td class="text-center">
-                                    <a href="/plagip/tareas/<%=element.id_subproyecto %>/<%=element.id_proyectista %>"class="btn btn-primary btn
+                                    <a href="/plagip/tareas/<%=element.id_subproyecto %>"class="btn btn-primary btn
                                         btn-sm text-center">Ver Detalle</a>
                                 </td>
                             </tr>
@@ -319,10 +336,11 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer p-2">
-                                    <button type="submit" class="form-control btn btn-primary btn-sm "
-                                        style=" width: 80px;">Guardar</button>
                                     <button type="submit" class="form-control btn btn-secondary btn-sm"
                                         style="width: 80px;" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="form-control btn btn-primary btn-sm "
+                                        style=" width: 80px;">Guardar</button>
+                                    
                                 </div>
                             </form>
                         </div>
@@ -378,6 +396,84 @@
             </div>
         </div>
     </div>
+
+    <!-- Despliege de modal codigo inicio -->
+
+    <div class="modal fade" id="modalcodigoinicio" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h1 class="modal-title fs-5 " id="staticBackdropLabel">Codigo Inicio</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container p-4 border border-2">
+                        <div class="container-fluid m-2">
+                            <form action="/plagip/actualizarcodigoinicio" method="post">
+                                <input type="text" name="id_proyecto" id="id_proyecto" value="<%= id_proc %>" hidden>
+                                <input type="text" name="id_proyectista" id="id_proyectista"
+                                    value="<%= usuario.id_proyectista %>" hidden>
+                                <div class="row m-4">
+                                    <div class="form-group col-md-8">
+                                       <input type="text" name ="codigo_inicio" id="codigo_inicio">
+                                    </div>
+                                </div>
+                                <div class="modal-footer p-2">
+                                    <button type="submit" class="form-control btn btn-primary btn-sm "
+                                        style=" width: 80px;">Guardar</button>
+                                    <button type="submit" class="form-control btn btn-secondary btn-sm"
+                                        style="width: 80px;" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Despliege de modal codigo fin -->
+
+    <div class="modal fade" id="modalcodigofin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h1 class="modal-title fs-5 " id="staticBackdropLabel">Codigo Inicio</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container p-4 border border-2">
+                    <div class="container-fluid m-2">
+                        <form action="/plagip/actualizarcodigofin" method="post">
+                            <input type="text" name="id_proyecto" id="id_proyecto" value="<%= id_proc %>" hidden>
+                            <input type="text" name="id_proyectista" id="id_proyectista"
+                                value="<%= usuario.id_proyectista %>" hidden>
+                            <div class="row m-4">
+                                <div class="form-group col-md-8">
+                                   <input type="text" name="codigo_fin" id="codigo_fin">
+                                </div>
+                            </div>
+                            <div class="modal-footer p-2">
+                                <button type="submit" class="form-control btn btn-primary btn-sm "
+                                    style=" width: 80px;">Guardar</button>
+                                <button type="submit" class="form-control btn btn-secondary btn-sm"
+                                    style="width: 80px;" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
 
     <!-- script con estilos de la tabla y formato -->
 </div>
