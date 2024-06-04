@@ -1,2 +1,416 @@
-<!-- toda la indormacion relacionada al proyecto,  -->
-<h1>vista sub proyectos de  proyectos</h1>
+<div class="container">
+    <h2 class="text-center p-4" name="nombre_proyecto" id="nombre_proyecto">
+        <% nombreProyecto.forEach(element=> { %>
+            <%=element.nombre_proyecto %>
+                <% }) %>
+    </h2>
+    <!-- Boton para desplegar modal de creacion de subproyectos -->
+    <div style="text-align: right">
+        <form action="">
+            <button type="button" class="btn btn-primary text-center m-2" data-bs-toggle="modal"
+                data-bs-target="#subproyectos"> Crear subproyecto
+            </button>
+        </form>
+    </div>
+    <!-- Formulario del detalle del proyecto -->
+    <div class="container p-4 border border-2">
+        <h4 class="m-4">Informacion</h4>
+        <div class="container-fluid m-2">
+            <div class="row pt-2">
+                <div class="form-group col-md-2">
+                    <p>Tipo proyecto:</p>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="" name="tipo_proyecto" id="tipo_proyecto">
+                        <% nombreProyecto.forEach(element=> { %>
+                            <%=element.tipo_proyecto %>
+                                <% }) %>
+                    </label>
+
+                </div>
+                <div class="form-group col-md-2">
+                    <p>Fecha Creacion:</p>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="" name="fecha_creacion" id="fecha_creacion">
+                        <% nombreProyecto.forEach(element=> { %>
+                            <%=element.fecha_creacion %>
+                                <% }) %>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <p>Encargado proyecto:</p>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="" name="encargado_proyecto" id="encargado_proyecto">
+                        <% nombreProyecto.forEach(element=> { %>
+                            <%=element.encargado_proyecto %>
+                                <% }) %>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <p>Tipo Idea:</p>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="" name="tipo_idea" id="tipo_idea">
+                        <% nombreProyecto.forEach(element=> { %>
+                            <%=element.tipo_idea %>
+                                <% }) %>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <p>Codigo Inicio:</p>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="" name="codig_inicio" id="codig_inicio">
+                        <% nombreProyecto.forEach(element=> { %>
+                            <%=element.codigo_inicio %>
+                                <% }) %>
+                    </label>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="">Ciclo: </label>
+                    <label for="" name="ciclosProyecto">xxxxxxx</label>
+
+                </div>
+                <div class="form-group  col-md-3">
+                    <button type="button" class="btn btn-primary text-center btn btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#modalciclos">Editar</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <p>Codigo Fin:</p>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="" name="cdigo_fin" id="cdigo_fin">
+                        <% nombreProyecto.forEach(element=> { %>
+                            <%=element.codigo_fin %>
+                                <% }) %>
+                    </label>
+                </div>
+                <div class="form-group col-md-2 ">
+                    <label for="">Estado: </label>
+                    <label for="" name="estadoProyecto">xxxxxxx</label>
+
+                </div>
+                <div class="form-group  col-md-3">
+                    <button type="button" class="btn btn-primary btn btn-sm w-33" data-bs-toggle="modal"
+                        data-bs-target="#modalestados" style="align-items: right;">Editar</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <p>Monto:</p>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="" name="montoProyecto">xxxxx</label>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="">Rate: </label>
+                    <label for="" name="rateProyecto">xxxxxxx</label>
+
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-primary text-center btn btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#modalrate">Editar</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <h5>Descripcion:</h5>
+                    <label for="" name="descripcion" id="descripcion">
+                        <% nombreProyecto.forEach(element=> { %>
+                            <%=element.descripcion %>
+                                <% }) %>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- tabla subproyectos -->
+    <div class="container p-4 mt-2 table-responsive border border-1">
+        <h3 class="text-center">Tabla subproyectos</h3>
+        <hr>
+
+        <div class="container-fluid">
+            <div class="row">
+                <table class="table table-light bg-opacity-25 table-striped tabla-hover table-bordered " id="tabla"
+                    style="background-color: #6ed5fd; font-size: 0.9em;">
+                    <thead>
+                        <tr>
+
+                            <th>Proyectista </th>
+                            <th>Nombre subproyecto </th>
+                            <th>Fecha Creacion</th>
+                            <th>Estado </th>
+                            <th>Acciones </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% tablasubproyectos.forEach(element=> { %>
+                            <tr>
+                                <td>
+                                    <%=element.nombre_proyectista %>
+                                </td>
+                                <td>
+                                    <%=element.nombre_proyecto %>
+                                </td>
+                                <td>
+                                    <%=element.fecha_creacion %>
+                                </td>
+
+                                <td>
+                                    <%=element.id_subproyecto %>
+                                </td>
+                                <td class="text-center">
+                                    <a href="/plagip/tareas/<%=element.id_subproyecto %>/<%=element.id_proyectista %>"class="btn btn-primary btn
+                                        btn-sm text-center">Ver Detalle</a>
+                                </td>
+                            </tr>
+                            <% }) %>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <!-- Modal que despliega formulario de creacion de sub proyectos -->
+
+    <div class="modal fade" id="subproyectos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">Nuevo subproyecto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <form action="/plagip/crearsubproyecto" autocomplete="off" method="post">
+                            <div class="form-row">
+                                <input type="text" name="id_proyecto" id="id_proyecto" value="<%= id_proc %>" hidden>
+                                <div class="form-gorup col-md-6">
+                                    <label for="">Proyectista</label>
+                                    <select name="id_proyectista" class="form-select" id="id_proyectista">
+                                        <% nombreProyectista.forEach(element=> { %>
+                                            <option value="<%= element.id %>">
+                                                <%= element.nombre %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-5 ">
+                                    <label for="">Estado</label>
+                                    <select name="id_estado_subproyecto" class="form-select" id="id_estado_subproyecto">
+                                        <% tipoEstados_tsp.forEach(element=> { %>
+                                            <option value="<%= element.id %>">
+                                                <%= element.nombre %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-8 mt-2 ">
+                                    <label for="">Nombre subproyecto:</label>
+                                    <input type="text" placeholder="" class="form-control txt_NombreProyecto"
+                                        name="nombre_subproyecto" id="nombre_subproyecto" required>
+                                </div>
+                                <div class="form-group col-md-12 mt-2 ">
+                                    <label for="">Descripcion</label>
+                                    <input type="text" placeholder="" class="form-control txt_DescripcionProyecto"
+                                        name="descripcion_subproyecto" id="descripcion_subproyecto" required>
+                                </div>
+                                <div class="modal-footer md-2">
+                                    <button type="submit" class="form-control btn btn-primary btn-sm "
+                                        style=" width: 80px;">Guardar</button>
+                                    <button type="submit" class="form-control btn btn-secondary btn-sm"
+                                        style="width: 80px;" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Descplieges de modal ciclos -->
+    <div class="modal fade" id="modalciclos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content ">
+                <div class="modal-header ">
+                    <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">Actualizar ciclo</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container p-4 border border-2">
+                        <div class="container-fluid m-2">
+                            <form action="/plagip/actualizarciclo" method="post">
+                                <input type="text" name="id_proyecto" id="id_proyecto" value="<%= id_proc %>" hidden>
+                                <input type="text" name="id_proyectista" id="id_proyectista"
+                                    value="<%= usuario.id_proyectista %>" hidden>
+                                <div class="row m-4">
+                                    <div class="form-group col-md-8">
+                                        <select name="id_ciclo" class="form-select" id="id_ciclo">
+                                            <% tiposCiclos.forEach(element=> { %>
+                                                <option value="<%= element.id %>">
+                                                    <%= element.nombre %>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer p-2">
+                                    <button type="submit" class="form-control btn btn-primary btn-sm "
+                                        style=" width: 80px;">Guardar</button>
+                                    <button type="submit" class="form-control btn btn-secondary btn-sm"
+                                        style="width: 80px;" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Descplieges de modal Estados -->
+    <div class="modal fade" id="modalestados" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h1 class="modal-title fs-5 " id="staticBackdropLabel">Actualizar estados</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container p-4 border border-2">
+                        <div class="container-fluid m-2">
+                            <form action="/plagip/actualizarestados" method="post">
+                                <input type="text" name="id_proyecto" id="id_proyecto" value="<%= id_proc %>" hidden>
+                                <input type="text" name="id_proyectista" id="id_proyectista"
+                                    value="<%= usuario.id_proyectista %>" hidden>
+                                <div class="row m-4">
+                                    <div class="form-group col-md-8">
+                                        <select name="id_estado" class="form-select" id="id_estado">
+                                            <% tipoEstados.forEach(element=> { %>
+                                                <option value="<%= element.id %>">
+                                                    <%= element.nombre %>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer p-2">
+                                    <button type="submit" class="form-control btn btn-primary btn-sm "
+                                        style=" width: 80px;">Guardar</button>
+                                    <button type="submit" class="form-control btn btn-secondary btn-sm"
+                                        style="width: 80px;" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Descplieges de modal Rate -->
+    <div class="modal fade" id="modalrate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h1 class="modal-title fs-5 " id="staticBackdropLabel">Actualizar rate</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container p-4 border border-2">
+                        <div class="container-fluid m-2">
+                            <form action="/plagip/actualizarate" method="post">
+                                <input type="text" name="id_proyecto" id="id_proyecto" value="<%= id_proc %>" hidden>
+                                <input type="text" name="id_proyectista" id="id_proyectista"
+                                    value="<%= usuario.id_proyectista %>" hidden>
+                                <div class="row m-4">
+                                    <div class="form-group col-md-8">
+                                        <select name="id_rate" class="form-select" id="id_rate">
+                                            <% tipoRate.forEach(element=> { %>
+                                                <option value="<%= element.id %>" title="<%= element.descripcion %>">
+                                                    <%= element.nombre %>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer p-2">
+                                    <button type="submit" class="form-control btn btn-primary btn-sm "
+                                        style=" width: 80px;">Guardar</button>
+                                    <button type="submit" class="form-control btn btn-secondary btn-sm"
+                                        style="width: 80px;" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- script con estilos de la tabla y formato -->
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css" />
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#tabla').DataTable({
+            "columnDefs": [{
+                "targets": 0
+            }],
+            "order": ([0, 'desc']),
+
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar MENU resultados",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando resultados START-END de  TOTAL",
+            "sInfoEmpty": "Mostrando resultados del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de MAX registros)",
+            "sSearch": "Buscar:",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+        }
+        );
+
+    });
+
+</script>

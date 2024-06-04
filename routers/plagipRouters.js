@@ -8,8 +8,14 @@ router.get('/',plagipController.getIndex);
 router.get('/proyectos',plagipController.getIndexProyectos);
 router.get('/misProyectos',plagipController.getIndexMisProyectos);
 router.post('/proyectos',plagipController.setcrearproyecto);
-router.get('/misProyectos/:id',plagipController.getsubproyectos);
+router.get('/subproyectos/:id',plagipController.getsubproyectos);
 router.post('/actualizarciclo',plagipController.postactualizarciclo);
-router.post('/actualizarestado',plagipController.postactualizarestado);
+router.post('/actualizarestados',plagipController.postactualizarestado);
+router.post('/actualizarate',plagipController.postactualizarrate);
+router.post('/crearsubproyecto',plagipController.postcrearsubproyecto);
+
+router.get('/tareas/:id/:id_proyectista',plagipController.getlistarsubproyectostareas);
+
+
 
 module.exports = router;

@@ -1,4 +1,4 @@
-<div class="container p-4 mt-2 table-responsive border border-1">
+<div class="container p-4 mt-5 table-responsive border border-1">
     <h3 class="text-center">Proyectos</h3>
     <hr>
     <!-- Boton para desplegar modal de creacion de proyectos -->
@@ -7,16 +7,17 @@
             <button type="button" class="btn btn-primary text-center m-3" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop"> Crear proyecto
 
-                
+
             </button>
         </form>
     </div>
     <div class="container-fluid">
         <div class="row">
-            <table class="table table-light bg-opacity-25 table-striped tabla-hover table-bordered "id="tabla" style="background-color: #6ed5fd; font-size: 0.9em;">
-                <thead >
+            <table class="table table-light bg-opacity-25 table-striped tabla-hover table-bordered " id="tabla"
+                style="background-color: #6ed5fd; font-size: 0.9em;">
+                <thead>
                     <tr>
-                        
+
                         <th>Id</th>
                         <th>Tipo</th>
                         <th>Encargado </th>
@@ -25,35 +26,49 @@
                         <th>Descripcion </th>
                         <th>Acciones </th>
 
-                        
+
                     </tr>
                 </thead>
-                
+
                 <tbody>
-                    <% tablaProyectos.forEach(element => { %>
+                    <% tablaProyectos.forEach(element=> { %>
                         <tr>
-                            <td><%=element.id_proyecto %></td>
-                            <td><%=element.tipo_proyecto %></td>
-                            <td><%=element.encargado_proyecto %></td>
-                            <td><%=element.nombre_proyecto %></td>
-                            <td><%=element.fecha_creacion %></td>
-                            <td><%=element.descripcion %></td>  
                             <td>
-                                <!-- añadir boton accion funcion : redirigir a vista donde se muestre toda la indormacion relacionada 
-                                al proyecto -->
-                            </td>                           
-                        </tr>                   
-                    <% }) %>            
-                                    
-        
+                                <%=element.id_proyecto %>
+                            </td>
+                            <td>
+                                <%=element.tipo_proyecto %>
+                            </td>
+                            <td>
+                                <%=element.encargado_proyecto %>
+                            </td>
+                            <td>
+                                <%=element.nombre_proyecto %>
+                            </td>
+                            <td>
+                                <%=element.fecha_creacion %>
+                            </td>
+                            <td>
+                                <%=element.descripcion %>
+                            </td>
+                            <td class="text-center">
+
+                                <a href="/plagip/subproyectos/<%=element.id_proyecto %>"
+                                    class="btn btn-primary btn btn-sm text-center">Ver Detalle</a>
+
+                            </td>
+                        </tr>
+                        <% }) %>
+
+
                 </tbody>
             </table>
         </div>
     </div>
-    
-   
- 
-  
+
+
+
+
 </div>
 
 
@@ -69,27 +84,31 @@
             <div class="modal-body">
                 <div class="col-md-12">
                     <form action="/plagip/proyectos" class="RegistroProyecto" autocomplete="off" method="post">
-                        <div class="form-row">  
+                        <div class="form-row">
                             <div class="form-gorup col-md-4">
                                 <label for="">Proyecto</label>
                                 <select name="id_tipoproyecto" class="form-select" id="id_tipoproyecto">
-                                <% tipoProyecto.forEach(element => { %>
-                                 <option value="<%= element.id %>"><%= element.nombre %></option>
-                                <% }) %>
-                                   
+                                    <% tipoProyecto.forEach(element=> { %>
+                                        <option value="<%= element.id %>">
+                                            <%= element.nombre %>
+                                        </option>
+                                        <% }) %>
+
                                 </select>
                             </div>
                             <div class="form-group col-md-8 ">
                                 <label for="">Jefe Proyecto:</label>
                                 <select name="id_jefeproyecto" class="form-select" id="id_jefeproyecto">
-                                    <% encargados.forEach(element => { %>
-                                     <option value="<%= element.idproyectista %>"><%= element.nombreproyectista %> %></option>
-                                    <% }) %>
-                                       
-                                    </select>
+                                    <% encargados.forEach(element=> { %>
+                                        <option value="<%= element.idproyectista %>">
+                                            <%= element.nombreproyectista %> %>
+                                        </option>
+                                        <% }) %>
+
+                                </select>
                             </div>
                             <div class="form-group col-md-4 mt-2">
-                                <label for="">Tipo Proyecto</label>                                
+                                <label for="">Tipo Proyecto</label>
                                 <select name="tipo_idea" class="form-select" id="tipo_idea">
                                     <option value="PLADECO">Pladeco</option>
                                     <option value="COMUNAL">Comunal</option>
@@ -100,10 +119,6 @@
                                 <input type="text" placeholder="" class="form-control txt_NombreProyecto"
                                     name="nombre_proyecto" id="nombre_proyecto" required>
                             </div>
-                            <div class="form-group col-md-4 mt-2 ">
-                                <label for="">Fecha Creacion:</label>
-                                <input type="date" class="form-control" name="fecha_creacion" id="fecha_creacion" required>
-                            </div>
                             <div class="form-group col-md-12 mt-2 ">
                                 <label for="">Descripcion</label>
                                 <input type="text" placeholder="" class="form-control txt_DescripcionProyecto"
@@ -111,13 +126,15 @@
                             </div>
                         </div>
                         <div class="modal-footer md-2">
-                            <button type="submit" class="form-control btn btn-primary btn-sm " style=" width: 80px;">Guardar</button>
-                            <button type="submit" class="form-control btn btn-secondary btn-sm"style="width: 80px;" data-bs-dismiss="modal">Cerrar</button>                
+                            <button type="submit" class="form-control btn btn-primary btn-sm "
+                                style=" width: 80px;">Guardar</button>
+                            <button type="submit" class="form-control btn btn-secondary btn-sm" style="width: 80px;"
+                                data-bs-dismiss="modal">Cerrar</button>
                         </div>
                     </form>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>
@@ -127,29 +144,29 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-    $('#tabla').DataTable({
-    "columnDefs": [{
-    "targets": 0
-    }],
-    "order"     : ([0, 'desc']),
-    
-    "sProcessing": "Procesando...",
-    "sLengthMenu": "Mostrar MENU resultados",
-    "sZeroRecords": "No se encontraron resultados",
-    "sEmptyTable": "Ningún dato disponible en esta tabla",
-    "sInfo": "Mostrando resultados START-END de  TOTAL",
-    "sInfoEmpty": "Mostrando resultados del 0 al 0 de un total de 0 registros",
-    "sInfoFiltered": "(filtrado de un total de MAX registros)",
-    "sSearch": "Buscar:",
-    "sLoadingRecords": "Cargando...",
-    "oPaginate": {
-        "sFirst": "Primero",
-        "sLast": "Último",
-        "sNext": "Siguiente",
-        "sPrevious": "Anterior"
-    },
-    }
-    );
-});
+    $(document).ready(function () {
+        $('#tabla').DataTable({
+            "columnDefs": [{
+                "targets": 0
+            }],
+            "order": ([0, 'desc']),
+
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar MENU resultados",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando resultados START-END de  TOTAL",
+            "sInfoEmpty": "Mostrando resultados del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de MAX registros)",
+            "sSearch": "Buscar:",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+        }
+        );
+    });
 </script>
