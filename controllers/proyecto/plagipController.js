@@ -123,14 +123,15 @@ const getsubproyectos = async (req, res) => {
                         connection.query(`SELECT * FROM rate`, (error, result) => {
                             const tipoRate = Object.values(JSON.parse(JSON.stringify(result))); //evaluando lo que me trae la consulta
 
-                            connection.query(`SELECT sub_proyectos.id AS id_subproyecto, proyectos.id AS id_proyecto,id_proyectista, users.name AS nombre_proyectista, proyectos.nombre_proyecto, proyectos.descripcion, proyectos.fecha_creacion, proyectos.codigo_inicio, proyectos.codigo_fin,ciclo.nombre AS nombre_ciclo, estados.nombre AS nombre_estado, rate.nombre as nombre_rate, sub_proyectos.nombre_subproyecto, sub_proyectos.descripcion_subproyecto,sub_proyectos.fecha_inicio, sub_proyectos.fecha_fin FROM sub_proyectos INNER JOIN proyectos ON proyectos.id = sub_proyectos.id_proyecto INNER JOIN proyectistas ON proyectistas.id = proyectos.id_jefeproyecto INNER JOIN users ON users.id = proyectistas.id_usuario LEFT JOIN ciclo ON ciclo.id = proyectos.id_ciclo LEFT JOIN estados ON estados.id = proyectos.id_estado LEFT JOIN rate ON rate.id = proyectos.id_rateproyecto INNER JOIN estados_tsp ON estados_tsp.id = sub_proyectos.id_estado_subproyecto WHERE proyectos.id = "${id_proc}"`, (error, result) => {
+                            connection.query(`SELECT sub_proyectos.id_proyecto, sub_proyectos.id, users.name as nombre_proyectista, sub_proyectos.nombre_subproyecto as nombre_subproyecto, sub_proyectos.fecha_inicio as fecha_inicio, estados_tsp.nombre as nombre_estado FROM sub_proyectos INNER JOIN estados_tsp ON estados_tsp.id = sub_proyectos.id_estado_subproyecto INNER JOIN proyectistas ON sub_proyectos.id_proyectista=proyectistas.id INNER JOIN users ON proyectistas.id_usuario=users.id WHERE sub_proyectos.id_proyecto="${id_proc}"`, (error, result) => {
                                 const tablasubproyectos = Object.values(JSON.parse(JSON.stringify(result))); //evaluando lo que me trae la consulta
 
                                 connection.query(`SELECT * FROM estados_tsp`, (error, result) => {
                                     const tipoEstados_tsp = Object.values(JSON.parse(JSON.stringify(result))); //evaluando lo que me trae la consulta
 
 
-                                    console.log(tablasubproyectos);
+                                    //console.log(tablasubproyectos);
+                                    // console.log(nombreProyecto);
 
                                     res.render('./Proyectos/vistaproyecto', {
                                         usuario: req.session.user,
@@ -208,11 +209,13 @@ const postactualizarciclo = async (req, res) => {
                                             res.status(500).send(error.message);
                                             return;
                                         } else {
-                                            res.status(200).json({
-                                                mensaje: 'Ciclo Actualizado',
-                                                result: result
-                                            });
-                                            return;
+                                            // res.status(200).json({
+                                                //     mensaje: 'Ciclo Actualizado',
+                                                //     result: result
+                                                // });
+                                                console.log('ciclo actualizado con exito')
+                                                res.redirect('back')
+                                                return;
                                         }
                                     });
                                 }
@@ -318,12 +321,13 @@ const postactualizarestado = async (req, res) => {
                                             res.status(500).send(error.message);
                                             return;
                                         } else {
-                                            res.status(200).json({
-                                                status: "ok",
-                                                mensaje: 'Estado Actualizado',
-                                                result: result
-                                            });
-                                            return;
+                                             // res.status(200).json({
+                                                //     mensaje: 'Ciclo Actualizado',
+                                                //     result: result
+                                                // });
+                                                console.log('estado actualizado con exito')
+                                                res.redirect('back')
+                                                return;
                                         }
                                     });
                                 }
@@ -350,12 +354,13 @@ const postactualizarestado = async (req, res) => {
                                             res.status(500).send(error.message);
                                             return;
                                         } else {
-                                            res.status(200).json({
-                                                status : "ok",
-                                                mensaje: 'Estado Actualizado',
-                                                result: result
-                                            });
-                                            return;
+                                                // res.status(200).json({
+                                                //     mensaje: 'Ciclo Actualizado',
+                                                //     result: result
+                                                // });
+                                                console.log('estado actualizado con exito')
+                                                res.redirect('back')
+                                                return;
                                         }
                                     });
                                 }
@@ -373,7 +378,7 @@ const postactualizarestado = async (req, res) => {
 }
 
 // Post actualizar rate 
-const postactualizarrate = async (req, res) => {
+const postactualizarrate = async (req, res) => {    
 
     try {
         let proyecto = req.body;
@@ -424,11 +429,13 @@ const postactualizarrate = async (req, res) => {
                                             res.status(500).send(error.message);
                                             return;
                                         } else {
-                                            res.status(200).json({
-                                                mensaje: 'RATE Actualizado',
-                                                result: result
-                                            });
-                                            return;
+                                             // res.status(200).json({
+                                                //     mensaje: 'Ciclo Actualizado',
+                                                //     result: result
+                                                // });
+                                                console.log('Rate actualizado con exito')
+                                                res.redirect('back')
+                                                return;
                                         }
                                     });
                                 }
@@ -484,7 +491,7 @@ const postcrearsubproyecto = async (req, res) => {
 
     try {
         let subproyecto = req.body;
-        connection.query(`INSERT INTO sub_proyectos SET id_proyecto = "${subproyecto.id_proyecto}", id_proyectista = "${subproyecto.id_proyectista}", id_estado_subproyecto = "${subproyecto.id_estado_subproyecto}", nombre_subproyecto = "${subproyecto.nombre}", descripcion_subproyecto = "${subproyecto.descripcion}", fecha_inicio = "${moment().format()}"`, (error, result) => {
+        connection.query(`INSERT INTO sub_proyectos SET id_proyecto = "${subproyecto.id_proyecto}", id_proyectista = "${subproyecto.id_proyectista}", id_estado_subproyecto = "${subproyecto.id_estado_subproyecto}", nombre_subproyecto = "${subproyecto.nombre_subproyecto}", descripcion_subproyecto = "${subproyecto.descripcion_subproyecto}", fecha_inicio = "${moment().format()}"`, (error, result) => {
             if (error) {
                 res.json({
                     status: 500,
@@ -493,7 +500,7 @@ const postcrearsubproyecto = async (req, res) => {
                 console.log(error.message);
                 return;
             } else {
-                connection.query(`INSERT INTO historial_proyectos SET id_proyecto = "${subproyecto.id_proyecto}",id_proyectista = "${subproyecto.id_proyectista}",titulo = "Creacion de SubProyecto : ${subproyecto.nombre}", descripcion_historial = "${subproyecto.descripcion}", fecha_registro = "${moment().format()}"`, (error, result) => {
+                connection.query(`INSERT INTO historial_proyectos SET id_proyecto = "${subproyecto.id_proyecto}",id_proyectista = "${subproyecto.id_proyectista}",titulo = "Creacion de SubProyecto : ${subproyecto.nombre_subproyecto}", descripcion_historial = "${subproyecto.descripcion_historial}", fecha_registro = "${moment().format()}"`, (error, result) => {
                     if (error) {
                         console.log(error)
                         res.status(500).send(error.message); rr
@@ -524,13 +531,13 @@ const updatecodigoinicio = async (req, res) => {
     try {
         let proyecto = req.body;
         console.log(proyecto)
-        connection.query(`UPDATE proyectos SET codigo_inicio = "${proyecto.codigo}" WHERE id = "${proyecto.id_proyecto}"`,(error,result)=>{
+        connection.query(`UPDATE proyectos SET codigo_inicio = "${proyecto.codigo_inicio}" WHERE id = "${proyecto.id_proyecto}"`,(error,result)=>{
             if (error) {
                 console.log(error)
                 res.status(500).send(error.message);
                 return;
             }else{
-                connection.query(`INSERT INTO historial_proyectos SET id_proyecto = "${proyecto.id_proyecto}",id_proyectista = "${proyecto.id_proyectista}",titulo = "Agrega codigo de inicio", descripcion_historial = "Codigo ${proyecto.codigo}", fecha_registro = "${moment().format()}"`,(error,result)=>{
+                connection.query(`INSERT INTO historial_proyectos SET id_proyecto = "${proyecto.id_proyecto}",id_proyectista = "${proyecto.id_proyectista}",titulo = "Agrega codigo de inicio", descripcion_historial = "Codigo ${proyecto.codigo_inicio}", fecha_registro = "${moment().format()}"`,(error,result)=>{
                     if (error) {
                         console.log(error)
                         res.status(500).send(error.message);
@@ -562,13 +569,13 @@ const updatecodigofin = async (req, res) => {
     try {
         let proyecto = req.body;
         //console.log(proyecto)
-        connection.query(`UPDATE proyectos SET codigo_fin = "${proyecto.codigo}" WHERE id = "${proyecto.id_proyecto}"`,(error,result)=>{
+        connection.query(`UPDATE proyectos SET codigo_fin = "${proyecto.codigo_fin}" WHERE id = "${proyecto.id_proyecto}"`,(error,result)=>{
             if (error) {
                 console.log(error)
                 res.status(500).send(error.message);
                 return;
             }else{
-                connection.query(`INSERT INTO historial_proyectos SET id_proyecto = "${proyecto.id_proyecto}",id_proyectista = "${proyecto.id_proyectista}",titulo = "Agrega codigo de Final", descripcion_historial = "Codigo ${proyecto.codigo}", fecha_registro = "${moment().format()}"`,(error,result)=>{
+                connection.query(`INSERT INTO historial_proyectos SET id_proyecto = "${proyecto.id_proyecto}",id_proyectista = "${proyecto.id_proyectista}",titulo = "Agrega codigo de Final", descripcion_historial = "Codigo ${proyecto.codigo_fin}", fecha_registro = "${moment().format()}"`,(error,result)=>{
                     if (error) {
                         console.log(error)
                         res.status(500).send(error.message);
@@ -597,7 +604,7 @@ const getlistarsubproyectostareas = async (req, res) => {
     const id_subproyecto = req.params.id_subproyecto
     
 
-    res.render('./Proyectos/tareas', {
+    res.render('./Proyectos/detallesubproyecto', {
         usuario: req.session.user,
 
     })

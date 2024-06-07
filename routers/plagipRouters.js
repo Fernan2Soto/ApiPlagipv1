@@ -20,7 +20,7 @@ router.post('/crearsubproyecto',plagipController.postcrearsubproyecto);
 router.post('/actualizarcodigoinicio',plagipController.updatecodigoinicio);
 router.post('/actualizarcodigofin',plagipController.updatecodigofin);
 
-router.get('/tareas/:id/:id_proyectista',plagipController.getlistarsubproyectostareas);
+router.get('/detallesubproyecto/:id',plagipController.getlistarsubproyectostareas);
 
 
 

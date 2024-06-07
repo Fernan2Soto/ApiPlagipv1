@@ -1,9 +1,9 @@
 <div class="container">
-    <h2 class="text-center p-4" name="nombre_proyecto" id="nombre_proyecto">
+    <h1 class="text-center p-4 "name="nombre_proyecto" id="nombre_proyecto" style ="text-transform: uppercase">
         <% nombreProyecto.forEach(element=> { %>
             <%=element.nombre_proyecto %>
                 <% }) %>
-    </h2>
+    </h1>
     <!-- Boton para desplegar modal de creacion de subproyectos -->
     <div style="text-align: right">
         <form action="">
@@ -18,7 +18,7 @@
         <div class="container-fluid m-2">
             <div class="row pt-2">
                 <div class="form-group col-md-2">
-                    <p>Tipo proyecto:</p>
+                    <p><strong>Tipo proyecto:</strong></p>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="" name="tipo_proyecto" id="tipo_proyecto">
@@ -29,7 +29,7 @@
 
                 </div>
                 <div class="form-group col-md-2">
-                    <p>Fecha Creacion:</p>
+                    <p><strong>Fecha Creacion:</strong></p>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="" name="fecha_creacion" id="fecha_creacion">
@@ -41,7 +41,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-2">
-                    <p>Encargado proyecto:</p>
+                    <p><strong>Encargado proyecto:</strong></p>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="" name="encargado_proyecto" id="encargado_proyecto">
@@ -53,7 +53,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-2">
-                    <p>Tipo Idea:</p>
+                    <p><strong>Tipo Idea:</strong></p>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="" name="tipo_idea" id="tipo_idea">
@@ -65,7 +65,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-2">
-                    <p>Codigo Inicio</p>                    
+                    <p><strong>Codigo Inicio</strong></p>                    
                 </div>
                 <div class="form-group col-md-2">
                     <label for="" name="codigo_inicio" id="codigo_inicio">
@@ -78,7 +78,7 @@
                     data-bs-target="#modalcodigoinicio">Editar</button>
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="">Ciclo: </label>
+                    <label for=""><strong>Ciclo:</strong> </label>
                     <label for="" name="ciclosProyecto">
                         <% nombreProyecto.forEach(element=> { %>
                         <%=element.nombre_ciclo %>
@@ -91,17 +91,21 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-2">
-                    <p>Codigo Fin:</p>
+                    <p><strong>Codigo Fin:</strong></p>
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="" name="" id=""></label>
+                    <label for="" name="codigo_fin" id="codigo_fin">
+                        <% nombreProyecto.forEach(element=> { %>
+                            <%=element.codigo_fin %>
+                                <% }) %>
+                    </label>
                 </div>
                 <div class="form-group col-md-2">
                     <button type="button" class="btn btn-primary text-center btn btn-sm" data-bs-toggle="modal"
                     data-bs-target="#modalcodigofin">Editar</button>
                 </div>
                 <div class="form-group col-md-2 ">
-                    <label for="">Estado: </label>
+                    <label for=""><strong>Estado:</strong> </label>
                     <label for="" name="estadoProyecto">
                         <% nombreProyecto.forEach(element=> { %>
                             <%=element.nombre_estado %>
@@ -116,13 +120,13 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-2">
-                    <p>Monto:</p>
+                    <p> <strong>Monto:</strong></p>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="" name="montoProyecto">xxxxx</label>
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="">Rate: </label>
+                    <label for=""><strong>Rate:</strong> </label>
                     <label for="" name="rateProyecto">
                         <% nombreProyecto.forEach(element=> { %>
                             <%=element.nombre_rate %>
@@ -137,7 +141,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <h5>Descripcion:</h5>
+                    <h5><strong>Descripcion:</strong></h5>
                     <label for="" name="descripcion" id="descripcion">
                         <% nombreProyecto.forEach(element=> { %>
                             <%=element.descripcion %>
@@ -178,20 +182,20 @@
                                     <%=element.nombre_proyectista %>
                                 </td>
                                 <td>
-                                    <%=element.nombre_proyecto %>
+                                    <%=element.nombre_subproyecto %>
                                 </td>
                                 <td>
-                                    <%=element.fecha_creacion %>
+                                    <%=element.fecha_inicio %>
                                 </td>
 
                                 <td>
                                     <%=element.nombre_estado %>
                                 </td>
                                 <td>
-                                    <%=element.nombre_estado %>
+                                    
                                 </td>
                                 <td class="text-center">
-                                    <a href="/plagip/tareas/<%=element.id_subproyecto %>"class="btn btn-primary btn
+                                    <a href="/plagip/detallesubproyecto/<%=element.id %>"class="btn btn-primary btn
                                         btn-sm text-center">Ver Detalle</a>
                                 </td>
                             </tr>
@@ -455,7 +459,7 @@
                                 value="<%= usuario.id_proyectista %>" hidden>
                             <div class="row m-4">
                                 <div class="form-group col-md-8">
-                                   <input type="text" name="codigo_fin" id="codigo_fin">
+                                   <input type="text" class="form-control" name="codigo_fin" id="codigo_fin" >
                                 </div>
                             </div>
                             <div class="modal-footer p-2">
