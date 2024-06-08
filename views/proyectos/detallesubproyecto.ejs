@@ -1,73 +1,88 @@
-<h1 class ="text-center">vista detalle subproyecto</h1>
-
 <div class="container">
-    <h2 class="text-center p-4" name="nombre_subproyecto" id="nombre_subproyecto">
-        
-    </h2>
-      
+    <h1 class="text-center p-4" name="nombre_subproyecto" id="nombre_subproyecto" style="text-transform: uppercase;">
+        <% formulariosubproyecto.forEach(element=> { %>
+            <%=element.nombre_subproyecto %>
+                <% }) %>
+    </h1>
+   
     <!-- Formulario del detalle del subproyecto -->
     <div class="container p-4 border border-2">
+        <br> 
         <h4 class="m-4">Informacion</h4>
         <div class="container-fluid m-2">
             <div class="row pt-2">
                 <div class="form-group col-md-2">
-                    <p>Nombre proyecto:</p>
+                    <p><strong>Nombre proyecto:</strong></p>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="" name="nombre_proyecto" id="nombre_proyecto">
-                       
+                        <% formulariosubproyecto.forEach(element=> { %>
+                            <%=element.nombre_proyecto %>
+                                <% }) %>
                     </label>
 
                 </div>
                 <div class="form-group col-md-2">
-                    <p>Fecha Inicio:</p>
+                    <p><strong>Fecha Inicio:</strong></p>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="" name="fecha_inicio" id="fecha_inicio">
-                        
+                        <% formulariosubproyecto.forEach(element=> { %>
+                            <%=element.fecha_inicio %>
+                                <% }) %>
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-2">
-                    <p>Nombre Proyectista:</p>
+                    <p><strong>Nombre Proyectista:</strong></p>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="" name="nombre_proyectista" id="nombre_proyectista">
-                        
+                        <% formulariosubproyecto.forEach(element=> { %>
+                            <%=element.nombre_proyectista %>
+                                <% }) %>
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-2">
-                    <p>Fecha Fin:</p>
+                    <p><strong>Fecha Fin:</strong></p>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="" name="fecha_fin" id="fecha_fin">
-                       
+                        <% formulariosubproyecto.forEach(element=> { %>
+                            <%=element.fecha_fin %>
+                                <% }) %>
                     </label>
                 </div>
                 <div class="form-group col-md-2 ">
-                    <label for="">Estado: </label>
-                    <label for="" name="estadoProyecto">xxxxxxx</label>
-
+                    <label for=""><strong>Estado: </strong></label>
+                    <label for="" name="estadoProyecto"></label>
+                    <% formulariosubproyecto.forEach(element=> { %>
+                        <%=element.nombre_estado %>
+                            <% }) %>
                 </div>
                 <div class="form-group  col-md-3">
                     <button type="button" class="btn btn-primary btn btn-sm w-33" data-bs-toggle="modal"
-                        data-bs-target="#modalestados" style="align-items: right;">Editar</button>
+                        data-bs-target="#modalestadosubproyectos" style="align-items: right;">Editar</button>
                 </div>
             </div>
             
             <div class="row">
                 <div class="form-group col-md-12">
-                    <h5>Descripcion:</h5>
+                    <h5><strong>Descripcion:</strong></h5>
                     <label for="" name="descripcion_subproyecto" id="descripcion_subproyecto">
-                        
+                        <% formulariosubproyecto.forEach(element=> { %>
+                            <%=element.descripcion %>
+                                <% }) %>
                     </label>
                 </div>
             </div>
         </div>
     </div>
+
+       
 
     <!-- Tareas relacionadas al subproyecto -->
 

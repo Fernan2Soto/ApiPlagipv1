@@ -131,7 +131,7 @@ const getsubproyectos = async (req, res) => {
 
 
                                     //console.log(tablasubproyectos);
-                                    // console.log(nombreProyecto);
+                                    //console.log(nombreProyecto);
 
                                     res.render('./Proyectos/vistaproyecto', {
                                         usuario: req.session.user,
@@ -210,12 +210,12 @@ const postactualizarciclo = async (req, res) => {
                                             return;
                                         } else {
                                             // res.status(200).json({
-                                                //     mensaje: 'Ciclo Actualizado',
-                                                //     result: result
-                                                // });
-                                                console.log('ciclo actualizado con exito')
-                                                res.redirect('back')
-                                                return;
+                                            //     mensaje: 'Ciclo Actualizado',
+                                            //     result: result
+                                            // });
+                                            console.log('ciclo actualizado con exito')
+                                            res.redirect('back')
+                                            return;
                                         }
                                     });
                                 }
@@ -321,13 +321,13 @@ const postactualizarestado = async (req, res) => {
                                             res.status(500).send(error.message);
                                             return;
                                         } else {
-                                             // res.status(200).json({
-                                                //     mensaje: 'Ciclo Actualizado',
-                                                //     result: result
-                                                // });
-                                                console.log('estado actualizado con exito')
-                                                res.redirect('back')
-                                                return;
+                                            // res.status(200).json({
+                                            //     mensaje: 'Ciclo Actualizado',
+                                            //     result: result
+                                            // });
+                                            console.log('estado actualizado con exito')
+                                            res.redirect('back')
+                                            return;
                                         }
                                     });
                                 }
@@ -354,13 +354,13 @@ const postactualizarestado = async (req, res) => {
                                             res.status(500).send(error.message);
                                             return;
                                         } else {
-                                                // res.status(200).json({
-                                                //     mensaje: 'Ciclo Actualizado',
-                                                //     result: result
-                                                // });
-                                                console.log('estado actualizado con exito')
-                                                res.redirect('back')
-                                                return;
+                                            // res.status(200).json({
+                                            //     mensaje: 'Ciclo Actualizado',
+                                            //     result: result
+                                            // });
+                                            console.log('estado actualizado con exito')
+                                            res.redirect('back')
+                                            return;
                                         }
                                     });
                                 }
@@ -378,7 +378,7 @@ const postactualizarestado = async (req, res) => {
 }
 
 // Post actualizar rate 
-const postactualizarrate = async (req, res) => {    
+const postactualizarrate = async (req, res) => {
 
     try {
         let proyecto = req.body;
@@ -429,13 +429,13 @@ const postactualizarrate = async (req, res) => {
                                             res.status(500).send(error.message);
                                             return;
                                         } else {
-                                             // res.status(200).json({
-                                                //     mensaje: 'Ciclo Actualizado',
-                                                //     result: result
-                                                // });
-                                                console.log('Rate actualizado con exito')
-                                                res.redirect('back')
-                                                return;
+                                            // res.status(200).json({
+                                            //     mensaje: 'Ciclo Actualizado',
+                                            //     result: result
+                                            // });
+                                            console.log('Rate actualizado con exito')
+                                            res.redirect('back')
+                                            return;
                                         }
                                     });
                                 }
@@ -462,7 +462,7 @@ const postactualizarrate = async (req, res) => {
                                             res.status(500).send(error.message);
                                             return;
                                         } else {
-                                           // res.status(200).json({
+                                            // res.status(200).json({
                                             //     mensaje: 'Ciclo Actualizado',
                                             //     result: result
                                             // });
@@ -531,20 +531,20 @@ const updatecodigoinicio = async (req, res) => {
     try {
         let proyecto = req.body;
         console.log(proyecto)
-        connection.query(`UPDATE proyectos SET codigo_inicio = "${proyecto.codigo_inicio}" WHERE id = "${proyecto.id_proyecto}"`,(error,result)=>{
+        connection.query(`UPDATE proyectos SET codigo_inicio = "${proyecto.codigo_inicio}" WHERE id = "${proyecto.id_proyecto}"`, (error, result) => {
             if (error) {
                 console.log(error)
                 res.status(500).send(error.message);
                 return;
-            }else{
-                connection.query(`INSERT INTO historial_proyectos SET id_proyecto = "${proyecto.id_proyecto}",id_proyectista = "${proyecto.id_proyectista}",titulo = "Agrega codigo de inicio", descripcion_historial = "Codigo ${proyecto.codigo_inicio}", fecha_registro = "${moment().format()}"`,(error,result)=>{
+            } else {
+                connection.query(`INSERT INTO historial_proyectos SET id_proyecto = "${proyecto.id_proyecto}",id_proyectista = "${proyecto.id_proyectista}",titulo = "Agrega codigo de inicio", descripcion_historial = "Codigo ${proyecto.codigo_inicio}", fecha_registro = "${moment().format()}"`, (error, result) => {
                     if (error) {
                         console.log(error)
                         res.status(500).send(error.message);
                         return;
-                    }else{
-                        
-                         // res.status(200).json({
+                    } else {
+
+                        // res.status(200).json({
                         //     mensaje: 'Subproyecto Creado con Exito',
                         //     result: result
                         // });
@@ -569,19 +569,19 @@ const updatecodigofin = async (req, res) => {
     try {
         let proyecto = req.body;
         //console.log(proyecto)
-        connection.query(`UPDATE proyectos SET codigo_fin = "${proyecto.codigo_fin}" WHERE id = "${proyecto.id_proyecto}"`,(error,result)=>{
+        connection.query(`UPDATE proyectos SET codigo_fin = "${proyecto.codigo_fin}" WHERE id = "${proyecto.id_proyecto}"`, (error, result) => {
             if (error) {
                 console.log(error)
                 res.status(500).send(error.message);
                 return;
-            }else{
-                connection.query(`INSERT INTO historial_proyectos SET id_proyecto = "${proyecto.id_proyecto}",id_proyectista = "${proyecto.id_proyectista}",titulo = "Agrega codigo de Final", descripcion_historial = "Codigo ${proyecto.codigo_fin}", fecha_registro = "${moment().format()}"`,(error,result)=>{
+            } else {
+                connection.query(`INSERT INTO historial_proyectos SET id_proyecto = "${proyecto.id_proyecto}",id_proyectista = "${proyecto.id_proyectista}",titulo = "Agrega codigo de Final", descripcion_historial = "Codigo ${proyecto.codigo_fin}", fecha_registro = "${moment().format()}"`, (error, result) => {
                     if (error) {
                         console.log(error)
                         res.status(500).send(error.message);
                         return;
-                    }else{
-                           // res.status(200).json({
+                    } else {
+                        // res.status(200).json({
                         //     mensaje: 'Subproyecto Creado con Exito',
                         //     result: result
                         // });
@@ -601,17 +601,34 @@ const updatecodigofin = async (req, res) => {
 //Acceso a la vista del detalle de subproyectos y tareas asociadas
 const getlistarsubproyectostareas = async (req, res) => {
 
-    const id_subproyecto = req.params.id_subproyecto
+    try {
+
+    const id_subproyecto = req.params.id
+
+        connection.query(`SELECT sub_proyectos.id_proyecto, sub_proyectos.id, proyectos.nombre_proyecto as nombre_proyecto, users.name as nombre_proyectista, sub_proyectos.nombre_subproyecto as nombre_subproyecto, sub_proyectos.fecha_inicio as fecha_inicio, estados_tsp.nombre as nombre_estado, fecha_fin, sub_proyectos.descripcion_subproyecto as descripcion FROM proyectos INNER JOIN sub_proyectos ON proyectos.id=sub_proyectos.id_proyecto INNER JOIN estados_tsp ON estados_tsp.id = sub_proyectos.id_estado_subproyecto INNER JOIN proyectistas ON sub_proyectos.id_proyectista=proyectistas.id INNER JOIN users ON proyectistas.id_usuario=users.id WHERE sub_proyectos.id="${id_subproyecto}"`, (error, result) => {
+            const formulariosubproyecto = Object.values(JSON.parse(JSON.stringify(result))); //evaluando lo que me trae la consulta
+
+            connection.query(`SELECT * FROM estados`, (error, result) => {
+                const tipoEstados = Object.values(JSON.parse(JSON.stringify(result))); //evaluando lo que me trae la consulta
     
 
-    res.render('./Proyectos/detallesubproyecto', {
-        usuario: req.session.user,
+                console.log(formulariosubproyecto)
 
-    })
+                res.render('./Proyectos/detallesubproyecto', {
+                    id_subproyecto:id_subproyecto,
+                    usuario: req.session.user,  
+                    formulariosubproyecto: formulariosubproyecto,
+                    tipoEstados: tipoEstados,
+                    
+                 })
+             })
+        })
 
-
-
+    } catch (error) {
+    res.status(500).send(error.message)
 }
+}
+
 
 module.exports = {
     getIndex,
